@@ -1,7 +1,10 @@
-# Stealth-Phantom-Roblox 
-a highly optimized Stealth System with NPC path finding and detection system
-Link to the game: 
-https://www.roblox.com/games/78118105284105/Stealth-Phantom
+# Stealth-Phantom-Roblox
+
+A highly optimized stealth system with NPC pathfinding and detection system.
+
+**[Play Stealth Phantom](https://www.roblox.com/games/78118105284105/Stealth-Phantom)**
+
+---
 
 # Guard AI System
 
@@ -10,7 +13,7 @@ A server-side stealth AI framework for Roblox Studio. It handles guard patrollin
 ## Features
 
 - **State Machine:** Manages behavior loops for Idle, Investigate, and Chase states.
-- **Sound Reactions:** Uses a BindableEvent so environmental triggers, like a thrown rock, can alert nearby guards within a certain radius.
+- **Sound Reactions:** Uses a `BindableEvent` so environmental triggers, such as a thrown rock, can alert nearby guards within a certain radius.
 - **Server Control:** Locks network ownership to the server to prevent movement jitter.
 
-Note: System Inspired By MGSV, Best Stealth Game Ever.
+> **Note:** System inspired by MGSV, the best stealth game ever.
