@@ -1,5 +1,7 @@
 # Stealth-Phantom-Roblox 
 a highly optimized Stealth System with NPC path finding and detection system
+Link to the game: 
+https://www.roblox.com/games/78118105284105/Stealth-Phantom
 
 # Guard AI System
 
