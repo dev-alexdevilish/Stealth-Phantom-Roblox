@@ -1,26 +1,11 @@
-# Stealth-Phantom-Roblox
+Stealth Phantom - Guard AI System
+Play Stealth Phantom
 
-A highly optimized stealth system with NPC pathfinding and detection system.
+Here is a server-side stealth AI I scripted, heavily inspired by MGSV (the GOAT of stealth games).
 
-**[Play Stealth Phantom](https://www.roblox.com/games/78118105284105/Stealth-Phantom)**
+It uses a state machine to handle Idle, Investigate, and Chase behaviors. Guards have a vision cone (using dot product + raycasting) and can pathfind around obstacles. I also hooked up a BindableEvent so they can hear and investigate environmental noises within a certain radius. Network ownership is locked to the server so players can't fling them around.
 
----
-
-# Guard AI System
-
-A server-side stealth AI framework for Roblox Studio. It handles guard patrolling, field-of-view sight lines, pathfinding around obstacles, and reacting to environmental sounds.
-
-## Features
-
-- **State Machine:** Manages behavior loops for Idle, Investigate, and Chase states.
-- **Sound Reactions:** Uses a `BindableEvent` so environmental triggers can alert nearby guards within a certain radius.
-- **Server Control:** Locks network ownership to the server to prevent movement jitter.
-
-> **Note:** System inspired by MGSV, the best stealth game ever.
-
-## Source Code
-
-Here is the core guard script handling the state machine, pathfinding, and vision cone detection:
+Here's the core script:
 
 ```lua
 local Players = game:GetService("Players")
