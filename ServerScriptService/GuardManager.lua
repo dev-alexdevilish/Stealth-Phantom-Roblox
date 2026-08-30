@@ -23,7 +23,7 @@ function Guard.new(npc)
 	self.humanoid = npc:WaitForChild("Humanoid")
 	self.hrp = npc:WaitForChild("HumanoidRootPart")
 
-	self.hrp:SetNetworkOwner(nil)
+	self.hrp:SetNetworkOwner(nil) -- lock physics to server
 	self.humanoid.WalkSpeed = 8
 
 	self.light = Instance.new("SpotLight")
@@ -54,6 +54,7 @@ function Guard.new(npc)
 	self.rayParams.FilterDescendantsInstances = {self.head.Parent}
 	self.rayParams.FilterType = Enum.RaycastFilterType.Exclude
 
+	-- navmesh agent params
 	self.path = PathfindingService:CreatePath({
 		AgentRadius = 2,
 		AgentHeight = 5,
@@ -94,6 +95,7 @@ function Guard:CanSeeTarget(targetChar)
 	local dot = lookVec:Dot(dir)
 	local angle = math.deg(math.acos(dot))
 
+	-- fov + line of sight check
 	if angle <= (self.fov / 2) then
 		local res = Workspace:Raycast(self.head.Position, dir * dist, self.rayParams)
 		if res and res.Instance:IsDescendantOf(targetChar) then
@@ -119,7 +121,7 @@ function Guard:RequestPath(dest)
 				self.wps = self.path:GetWaypoints()
 				self.wpIndex = 2
 			else
-				self.wps = {}
+				self.wps = {} -- clear on fail
 			end
 
 			self.nextPathCheck = os.clock() + 0.5
@@ -176,6 +178,7 @@ function Guard:Update(players)
 
 	else
 		if self.state == "CHASE" then
+			-- check last known location
 			self.state = "INVESTIGATE"
 			self.humanoid.WalkSpeed = 12
 			self.fov = ALERT_FOV
@@ -260,6 +263,7 @@ guardsFolder.ChildRemoved:Connect(function(child)
 	end
 end)
 
+-- audio detection
 NoiseEvent.Event:Connect(function(noisePos, noiseRadius)
 	for npc, guardInstance in pairs(activeGuards) do
 		if guardInstance.state == "IDLE" or guardInstance.state == "INVESTIGATE" then
@@ -282,6 +286,7 @@ NoiseEvent.Event:Connect(function(noisePos, noiseRadius)
 	end
 end)
 
+-- main loop
 while task.wait(TICK_RATE) do 
 	local players = Players:GetPlayers()
 	for npc, guardInstance in pairs(activeGuards) do
