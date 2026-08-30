@@ -296,7 +296,6 @@ NoiseEvent.Event:Connect(function(noisePos, noiseRadius)
 	end
 end)
 
--- main loop
 while task.wait(TICK_RATE) do 
 	local players = Players:GetPlayers()
 	for npc, guardInstance in pairs(activeGuards) do
